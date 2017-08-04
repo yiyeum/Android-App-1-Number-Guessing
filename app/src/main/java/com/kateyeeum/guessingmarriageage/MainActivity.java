@@ -21,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText guessAgeText;
     private TextView boxMessage;
     private Button btnInvisible;
+    private Button submit;
+    private Button submitInvisible;
     private LinearLayout messageBox;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void checkAges(View view){
+    public void setRandomAge(View view) {
+
 
         //catch two inputs in variables
         currentAgeText = (EditText) findViewById(R.id.currentAge);
@@ -42,17 +44,40 @@ public class MainActivity extends AppCompatActivity {
 
         //random age number to guess
         Random rand = new Random();
-        randomAge = rand.nextInt(40)+currentAge;
+        randomAge = rand.nextInt(40) + currentAge;
+
+        checkAge(view);
+    }
+
+    public void checkAge(View view){
 
         //if statements to display message box
-        if(guessAge > randomAge){
-            messageView = "Too Old!";
-        }else if(guessAge < randomAge){
-            messageView = "Too Young!";
-        }else{
-            messageView = "Correct!";
-        }
 
+//        if(currentAgeText != null && guessAgeText != null) {
+
+            if (currentAge > 0 && currentAge <= guessAge) {
+
+                if (guessAge > randomAge) {
+
+                    messageView = "Too Old!";
+
+                } else if (guessAge < randomAge) {
+
+                    messageView = "Too Young!";
+
+                } else {
+
+                    messageView = "Perfect!";
+                }
+
+            } else {
+
+                messageView = "Your age should be same or younger than guessing age";
+
+            }
+//        } else{
+//            messageView = "Please fill the age input!";
+//        }
 
         // Message Layout
         boxMessage = (TextView) findViewById(R.id.textInMessage);
@@ -68,12 +93,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void tryAgain(View view){
 
-        if(guessAge > randomAge){
+        if(guessAge == randomAge) {
+
             messageBox.setVisibility(View.INVISIBLE);
-        }else if(guessAge < randomAge){
+            recreate();
+
+        }else {
+            //show another button
+            submit = (Button) findViewById(R.id.submit);
+            submit.setVisibility(View.INVISIBLE);
+            submitInvisible = (Button) findViewById(R.id.submitInvisible);
+            submitInvisible.setVisibility(View.VISIBLE);
+
+
             messageBox.setVisibility(View.INVISIBLE);
-        }else{
-            messageBox.setVisibility(View.INVISIBLE);
+            guessAgeText.setText("");
+            btnInvisible.setVisibility(View.VISIBLE);
+
         }
+
     }
 }

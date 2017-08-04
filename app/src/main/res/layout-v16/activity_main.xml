@@ -10,11 +10,23 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:text="Check"
-        android:onClick="checkAges"
         android:layout_below="@+id/guessAge"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:onClick="setRandomAge"
+        android:text="Check"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/submitInvisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guessAge"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:onClick="checkAge"
+        android:visibility="invisible"
+        android:text="Check2"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -110,12 +122,12 @@
         android:id="@+id/messageLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_centerHorizontal="true"
         android:background="@android:color/holo_green_light"
         android:orientation="vertical"
         android:padding="30dp"
-        android:layout_alignTop="@+id/textView3"
-        android:visibility="invisible"
-        android:layout_centerHorizontal="true">
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/textInMessage"
@@ -130,8 +142,9 @@
             android:id="@+id/buttonInMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Button"
-            tools:ignore="HardcodedText,RtlHardcoded" />
+            android:layout_gravity="center_horizontal"
+            tools:ignore="HardcodedText,RtlHardcoded"
+            android:onClick="tryAgain"
+            android:text="Try Again" />
     </LinearLayout>
 </RelativeLayout>
