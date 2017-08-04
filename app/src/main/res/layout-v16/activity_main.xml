@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.kateyeeum.guessingmarriageage.MainActivity">
 
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="Check"
+        android:onClick="checkAges"
+        android:layout_below="@+id/guessAge"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
@@ -14,7 +25,8 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/imageView"
         android:layout_toStartOf="@+id/imageView"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="balloon"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -36,7 +48,7 @@
         android:fontFamily="sans-serif"
         android:text="How old are you?"
         android:textSize="20sp"
-        tools:ignore="HardcodedText,UnusedAttribute" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView3"
@@ -48,7 +60,7 @@
         android:fontFamily="sans-serif"
         android:text="How old do you want to get married?"
         android:textSize="20sp"
-        tools:ignore="HardcodedText,UnusedAttribute" />
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/currentAge"
@@ -79,7 +91,8 @@
         android:layout_toEndOf="@+id/imageView"
         android:layout_marginLeft="17dp"
         android:layout_marginStart="17dp"
-        tools:ignore="ContentDescription" />
+        android:contentDescription="couple"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -90,30 +103,19 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
         android:layout_marginTop="20dp"
-        tools:ignore="ContentDescription" />
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/guessAge"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:onClick="checkAges"
-        android:text="Check"
+        android:contentDescription="balloon"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/messageLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/currentAge"
-        android:layout_toEndOf="@+id/imageView4"
-        android:layout_toRightOf="@+id/imageView4"
         android:background="@android:color/holo_green_light"
         android:orientation="vertical"
         android:padding="30dp"
-        android:visibility="visible">
+        android:layout_alignTop="@+id/textView3"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/textInMessage"
@@ -124,15 +126,12 @@
             android:textSize="26sp"
             tools:ignore="HardcodedText" />
 
-        <!--<Button-->
-            <!--android:id="@+id/buttonInMessage"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:onClick="tryAgain"-->
-            <!--android:text="Try Again"-->
-            <!--tools:ignore="HardcodedText,RtlHardcoded"-->
-            <!--tools:text="Try Again" />-->
+        <Button
+            android:id="@+id/buttonInMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Button"
+            tools:ignore="HardcodedText,RtlHardcoded" />
     </LinearLayout>
-
 </RelativeLayout>
