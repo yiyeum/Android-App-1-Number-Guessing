@@ -12,6 +12,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final int  MIN_AGE = 0;
+    private final int MAX_AGE = 40;
+    private boolean wonGame = false;
     private int randomAge;
     private int currentAge;
     private int guessAge;
@@ -33,20 +36,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void setRandomAge(View view) {
 
+            //catch two inputs in variables
+            currentAgeText = (EditText) findViewById(R.id.currentAge);
+            guessAgeText = (EditText) findViewById(R.id.guessAge);
 
-        //catch two inputs in variables
-        currentAgeText = (EditText) findViewById(R.id.currentAge);
-        guessAgeText = (EditText) findViewById(R.id.guessAge);
+            //convert two values into integer
+            currentAge = Integer.parseInt(currentAgeText.getText().toString());
+            guessAge = Integer.parseInt(guessAgeText.getText().toString());
 
-        //convert two values into integer
-        currentAge = Integer.parseInt(currentAgeText.getText().toString());
-        guessAge = Integer.parseInt(guessAgeText.getText().toString());
+            //random age number to guess
+            Random rand = new Random();
+            randomAge = rand.nextInt(MAX_AGE) + currentAge;
 
-        //random age number to guess
-        Random rand = new Random();
-        randomAge = rand.nextInt(40) + currentAge;
-
-        checkAge(view);
+            checkAge(view);
     }
 
     public void checkAge(View view){
@@ -54,8 +56,17 @@ public class MainActivity extends AppCompatActivity {
         //if statements to display message box
 
 //        if(currentAgeText != null && guessAgeText != null) {
+            if(!wonGame){
+                //catch two inputs in variables
+                currentAgeText = (EditText) findViewById(R.id.currentAge);
+                guessAgeText = (EditText) findViewById(R.id.guessAge);
 
-            if (currentAge > 0 && currentAge <= guessAge) {
+                //convert two values into integer
+                currentAge = Integer.parseInt(currentAgeText.getText().toString());
+                guessAge = Integer.parseInt(guessAgeText.getText().toString());
+            }
+
+            if (currentAge > MIN_AGE && currentAge <= guessAge) {
 
                 if (guessAge > randomAge) {
 
@@ -68,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 
                     messageView = "Perfect!";
+                    wonGame = true;
                 }
 
             } else {
@@ -93,8 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void tryAgain(View view){
 
-        if(guessAge == randomAge) {
 
+        //if(guessAge == randomAge) {
+        if(wonGame){
             messageBox.setVisibility(View.INVISIBLE);
             recreate();
 
@@ -105,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             submitInvisible = (Button) findViewById(R.id.submitInvisible);
             submitInvisible.setVisibility(View.VISIBLE);
 
-
+            //set other button invisible
             messageBox.setVisibility(View.INVISIBLE);
             guessAgeText.setText("");
             btnInvisible.setVisibility(View.VISIBLE);
