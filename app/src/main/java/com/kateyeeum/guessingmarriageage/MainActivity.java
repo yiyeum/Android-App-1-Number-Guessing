@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -40,31 +41,47 @@ public class MainActivity extends AppCompatActivity {
             currentAgeText = (EditText) findViewById(R.id.currentAge);
             guessAgeText = (EditText) findViewById(R.id.guessAge);
 
-            //convert two values into integer
-            currentAge = Integer.parseInt(currentAgeText.getText().toString());
-            guessAge = Integer.parseInt(guessAgeText.getText().toString());
+        if(!currentAgeText.getText().toString().trim().isEmpty()) {
+            if( !guessAgeText.getText().toString().trim().isEmpty()) {
+                
+                //convert two values into integer
+                currentAge = Integer.parseInt(currentAgeText.getText().toString());
+                guessAge = Integer.parseInt(guessAgeText.getText().toString());
 
-            //random age number to guess
-            Random rand = new Random();
-            randomAge = rand.nextInt(MAX_AGE) + currentAge;
+                //random age number to guess
+                Random rand = new Random();
+                randomAge = rand.nextInt(MAX_AGE) + currentAge;
 
-            checkAge(view);
+                checkAge(view);
+            }else{
+                Toast.makeText(MainActivity.this, "Please fill the age you want to marry." , Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(MainActivity.this, "Please fill your age." , Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void checkAge(View view){
 
         //if statements to display message box
-
-//        if(currentAgeText != null && guessAgeText != null) {
             if(!wonGame){
-                //catch two inputs in variables
-                currentAgeText = (EditText) findViewById(R.id.currentAge);
-                guessAgeText = (EditText) findViewById(R.id.guessAge);
 
-                //convert two values into integer
-                currentAge = Integer.parseInt(currentAgeText.getText().toString());
-                guessAge = Integer.parseInt(guessAgeText.getText().toString());
+                    //catch two inputs in variables
+                    currentAgeText = (EditText) findViewById(R.id.currentAge);
+                    guessAgeText = (EditText) findViewById(R.id.guessAge);
+
+                if(!currentAgeText.getText().toString().trim().isEmpty() || !guessAgeText.getText().toString().trim().isEmpty()) {
+
+                    //convert two values into integer
+                    currentAge = Integer.parseInt(currentAgeText.getText().toString());
+                    guessAge = Integer.parseInt(guessAgeText.getText().toString());
+
+                }else{
+                    Toast.makeText(MainActivity.this, "Please fill the blank" , Toast.LENGTH_SHORT).show();
+                }
+
             }
+
 
             if (currentAge > MIN_AGE && currentAge <= guessAge) {
 
@@ -82,14 +99,15 @@ public class MainActivity extends AppCompatActivity {
                     wonGame = true;
                 }
 
-            } else {
+            } else if(currentAge == MIN_AGE){
+
+                messageView = "Your age should be bigger than 0";
+
+            }else {
 
                 messageView = "Your age should be same or younger than guessing age";
 
             }
-//        } else{
-//            messageView = "Please fill the age input!";
-//        }
 
         // Message Layout
         boxMessage = (TextView) findViewById(R.id.textInMessage);
