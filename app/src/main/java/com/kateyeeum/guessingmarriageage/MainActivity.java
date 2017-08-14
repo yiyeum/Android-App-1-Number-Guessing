@@ -43,16 +43,25 @@ public class MainActivity extends AppCompatActivity {
 
         if(!currentAgeText.getText().toString().trim().isEmpty()) {
             if( !guessAgeText.getText().toString().trim().isEmpty()) {
-                
-                //convert two values into integer
-                currentAge = Integer.parseInt(currentAgeText.getText().toString());
-                guessAge = Integer.parseInt(guessAgeText.getText().toString());
 
-                //random age number to guess
-                Random rand = new Random();
-                randomAge = rand.nextInt(MAX_AGE) + currentAge;
+                try {
+                    //convert two values into integer
+                    currentAge = Integer.parseInt(currentAgeText.getText().toString());
+                    guessAge = Integer.parseInt(guessAgeText.getText().toString());
 
-                checkAge(view);
+                    //random age number to guess
+                    Random rand = new Random();
+                    randomAge = rand.nextInt(MAX_AGE - currentAge + 1) + currentAge;
+
+                    checkAge(view);
+
+                } catch (NumberFormatException e){
+
+                    Toast.makeText(MainActivity.this, "Please type the number." , Toast.LENGTH_SHORT).show();
+                    currentAgeText.setText("");
+                    guessAgeText.setText("");
+
+                }
             }else{
                 Toast.makeText(MainActivity.this, "Please fill the age you want to marry." , Toast.LENGTH_SHORT).show();
             }
@@ -113,33 +122,53 @@ public class MainActivity extends AppCompatActivity {
         boxMessage = (TextView) findViewById(R.id.textInMessage);
         boxMessage.setText(messageView);
 
+        //make submit button invisible when message box appears.
         btnInvisible = (Button) findViewById(R.id.submit);
         btnInvisible.setVisibility(View.INVISIBLE);
 
+        //make another submit button invisible when message box appears.
+        submitInvisible = (Button) findViewById(R.id.submitInvisible);
+        submitInvisible.setVisibility(View.INVISIBLE);
+
+        //make message box visible.
         messageBox = (LinearLayout) findViewById(R.id.messageLayout);
         messageBox.setVisibility(View.VISIBLE);
+
+        //refresh the two text inputs to type again. - user experience.
+        guessAgeText.setText("");
 
     }
 
     public void tryAgain(View view){
 
 
-        //if(guessAge == randomAge) {
         if(wonGame){
             messageBox.setVisibility(View.INVISIBLE);
+            currentAgeText.setText("");
+
             recreate();
 
-        }else {
-            //show another button
+        }
+
+        //if guessing is wrong,
+        else {
+
+            //make submit button invisible.
             submit = (Button) findViewById(R.id.submit);
             submit.setVisibility(View.INVISIBLE);
+
+            //make another submit button visible.
             submitInvisible = (Button) findViewById(R.id.submitInvisible);
             submitInvisible.setVisibility(View.VISIBLE);
 
-            //set other button invisible
+            //make message box invisible.
             messageBox.setVisibility(View.INVISIBLE);
+
+            //make just the guessing age input empty. - user experience.
             guessAgeText.setText("");
-            btnInvisible.setVisibility(View.VISIBLE);
+
+            //make submit button
+//            btnInvisible.setVisibility(View.VISIBLE);
 
         }
 
