@@ -25,8 +25,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:onClick="checkAge"
+        android:text="Check"
         android:visibility="invisible"
-        android:text="Check2"
         tools:ignore="HardcodedText" />
 
     <ImageView
