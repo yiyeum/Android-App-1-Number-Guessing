@@ -1,6 +1,10 @@
 # Android app practice 1 : Number guessing game
 ### A Simple game for guessing my marriage age. 
 
+* #### Purpose of this practice
+     1. Mainly to practice if statement. 
+     2. Also, Toast message, parseInt(), and try & catch.
+     
 * #### How to play 
      1. Insert my age.
      2. Insert the age I want to marry.
@@ -11,6 +15,7 @@
 * #### ScreenShot 
 ![number_guessing](https://user-images.githubusercontent.com/20132973/29267020-c595bce2-809b-11e7-8256-77e618ef31dc.png)
 
-#### It will be updated whenever I find something to improve.
+#### Comment : 
+#### This app will be updated whenever I find something to improve.
 
 Copyright © 2017 Kate Yeeum Lee
